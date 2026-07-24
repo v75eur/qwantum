@@ -50,6 +50,13 @@ function ref(){M.forEach(function(m){fetch(A+'/stats/'+m).then(r=>r.json()).then
   document.getElementById('l5_'+m).textContent=d.L5||0;
 });});}
 ref();setInterval(ref,10000);
+function setF2(m){
+  var d=document.getElementById('f2_'+m).value.trim();
+  if(!d) return;
+  document.getElementById('f_'+m).value='';
+  fetch(A+'/filter/'+m,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({domain:d})})
+  .then(r=>r.json()).then(d=>alert(d.msg));
+}
 function setF(m){
   var d=document.getElementById('f_'+m).value.trim();
   fetch(A+'/filter/'+m,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({domain:d})})
