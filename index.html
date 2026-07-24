@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QWANTUM</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#060608;color:#d0d0e0;font-family:system-ui,sans-serif;min-height:100vh}
+header{padding:10px 16px;border-bottom:1px solid #f0b90b}
+.logo{font-size:18px;font-weight:800;color:#f0b90b}
+main{max-width:1000px;margin:10px auto;padding:0 8px}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.col{background:#0e0e18;border-radius:8px;padding:10px}
+.col h3{font-size:12px;margin-bottom:4px}
+.col .count{font-size:10px;margin-bottom:4px}.col .count b{font-size:14px}
+.col.np{border:1px solid #6366f1}.col.np h3{color:#6366f1}
+.col.gt{border:1px solid #f0b90b}.col.gt h3{color:#f0b90b}
+.col.ya{border:1px solid #00d4aa}.col.ya h3{color:#00d4aa}
+.term{background:#000;border-radius:4px;padding:6px;font-size:9px;font-family:monospace;height:250px;overflow-y:auto;white-space:pre-wrap;line-height:1.2;margin-bottom:6px}
+.term.np{border:1px solid #6366f1;color:#a5b4fc}
+.term.gt{border:1px solid #f0b90b;color:#fde68a}
+.term.ya{border:1px solid #00d4aa;color:#6ee7b7}
+input[type=number]{width:100%;background:#1a1a25;border:1px solid #333;color:#fff;padding:5px;border-radius:4px;font-size:10px;text-align:center;margin-bottom:4px}
+.btns{display:flex;gap:3px}.btns button{flex:1;padding:5px;border:none;border-radius:4px;font-size:9px;font-weight:600;cursor:pointer}
+.btn-csv{background:#22c55e;color:#000}.btn-del{background:#ef4444;color:#fff}
+@media(max-width:600px){.row{grid-template-columns:1fr}.term{height:150px}}
+</style>
+</head>
+<body>
+<header><div class="logo">QWANTUM</div></header>
+<main><div class="row" id="dash"></div></main>
+<script>
+var A='https://qwantum-api.onrender.com';
+var M=['np','gt','y@'];
+var N={np:'📦 np',gt:'🐙 gt','y@':'▶️ y@'};
+var C={np:'np',gt:'gt','y@':'ya'};
+
+var dash=document.getElementById('dash');
+M.forEach(function(m){
+  dash.innerHTML+='<div class="col '+C[m]+'">'+
+    '<h3>'+N[m]+'</h3>'+
+    '<div class="count">DNS: <b id="c_'+m+'">0</b></div>'+
+    '<div class="term '+C[m]+'" id="t_'+m+'"></div>'+
+    '<input type="number" id="n_'+m+'" value="50" min="1" max="9999">'+
+    '<div class="btns">'+
+      '<button class="btn-csv" onclick="dl(\''+m+'\')">📥 CSV</button>'+
+      '<button class="btn-del" onclick="clr(\''+m+'\')">🗑️</button>'+
+    '</div></div>';
+  var s=new EventSource(A+'/live/'+m);
+  s.onmessage=function(e){var t=document.getElementById('t_'+m);t.textContent+=e.data+'\n';t.scrollTop=t.scrollHeight;};
+});
+
+function ref(){M.forEach(function(m){fetch(A+'/stats/'+m).then(r=>r.json()).then(d=>{document.getElementById('c_'+m).textContent=d.dns||0});});}
+ref();setInterval(ref,10000);
+
+function dl(m){
+  var n=parseInt(document.getElementById('n_'+m).value)||50;
+  fetch(A+'/download/'+m+'?n='+n).then(r=>r.json()).then(d=>{
+    if(d.emails.length){var c='email\n'+d.emails.join('\n');var b=new Blob([c],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='qw_'+m+'.csv';a.click();}
+    else{alert('Aucun email');}
+  });
+}
+function clr(m){if(confirm('Vider '+m+' ?')){fetch(A+'/clear/'+m).then(()=>{ref();});}}
+</script>
+</body>
+</html>
