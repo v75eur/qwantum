@@ -7,33 +7,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#020208;color:#e0e0f0;font-family:system-ui,sans-serif;min-height:100vh}
-header{text-align:center;padding:25px 16px 15px;border-bottom:2px solid #f0b90b}
-.logo{font-family:'Press Start 2P',monospace;font-size:24px;font-weight:400;color:#f0b90b;line-height:1.6;animation:glow 2s ease-in-out infinite}
-@keyframes glow{0%,100%{text-shadow:0 0 10px #f0b90b,0 0 20px #f0b90b}50%{text-shadow:0 0 30px #f0b90b,0 0 60px #f0b90b,0 0 80px #f0b90b}}
-.subtitle{color:#888;font-size:14px;margin-top:6px;letter-spacing:3px}
-main{max-width:1100px;margin:20px auto;padding:0 12px}
-.row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.col{background:#0c0c1a;border-radius:14px;padding:18px;transition:all 0.3s}
-.col:hover{transform:translateY(-3px)}
-.col h3{font-size:18px;margin-bottom:8px;text-align:center}
-.col .count{font-size:15px;margin-bottom:10px;text-align:center}.col .count b{font-size:22px}
-.col.np{border:1px solid #6366f1;box-shadow:0 0 20px rgba(99,102,241,0.1)}.col.np h3{color:#6366f1}
-.col.gt{border:1px solid #f0b90b;box-shadow:0 0 20px rgba(240,185,11,0.1)}.col.gt h3{color:#f0b90b}
-.col.ya{border:1px solid #00d4aa;box-shadow:0 0 20px rgba(0,212,170,0.1)}.col.ya h3{color:#00d4aa}
-.term{background:#000;border-radius:8px;padding:12px;font-size:13px;font-family:'Courier New',monospace;height:300px;overflow-y:auto;white-space:pre-wrap;line-height:1.4;margin-bottom:10px}
+header{text-align:center;padding:20px 16px 12px;border-bottom:2px solid #f0b90b}
+.logo{font-family:'Press Start 2P',monospace;font-size:20px;color:#f0b90b;line-height:1.6;animation:glow 2s ease-in-out infinite}
+@keyframes glow{0%,100%{text-shadow:0 0 10px #f0b90b}50%{text-shadow:0 0 30px #f0b90b,0 0 60px #f0b90b}}
+.subtitle{color:#888;font-size:12px;margin-top:4px;letter-spacing:2px}
+main{max-width:1100px;margin:16px auto;padding:0 10px}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.col{background:#0c0c1a;border-radius:12px;padding:14px;transition:all 0.3s}
+.col:hover{transform:translateY(-2px)}
+.col h3{font-size:16px;margin-bottom:6px;text-align:center}
+.col .counts{font-size:11px;margin-bottom:8px;text-align:center;line-height:1.6}
+.col .counts b{font-size:14px}
+.col.np{border:1px solid #6366f1}.col.np h3{color:#6366f1}
+.col.gt{border:1px solid #f0b90b}.col.gt h3{color:#f0b90b}
+.col.ya{border:1px solid #00d4aa}.col.ya h3{color:#00d4aa}
+.term{background:#000;border-radius:6px;padding:8px;font-size:10px;font-family:monospace;height:220px;overflow-y:auto;white-space:pre-wrap;line-height:1.3;margin-bottom:6px}
 .term.np{border:1px solid #6366f1;color:#a5b4fc}
 .term.gt{border:1px solid #f0b90b;color:#fde68a}
 .term.ya{border:1px solid #00d4aa;color:#6ee7b7}
-input[type=number]{width:100%;background:#1a1a2e;border:1px solid #444;color:#fff;padding:10px;border-radius:8px;font-size:14px;text-align:center;margin-bottom:8px}
-.btns{display:flex;gap:5px}.btns button{flex:1;padding:10px;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s}.btns button:hover{opacity:0.8}
-.btn-csv{background:#22c55e;color:#000}.btn-del{background:#ef4444;color:#fff}
-@media(max-width:700px){.row{grid-template-columns:1fr}.term{height:200px}.logo{font-size:16px}}
+input[type=number]{width:100%;background:#1a1a2e;border:1px solid #444;color:#fff;padding:6px;border-radius:6px;font-size:11px;text-align:center;margin-bottom:4px}
+.btns{display:flex;gap:3px;flex-wrap:wrap}.btns button{flex:1;min-width:45px;padding:6px;border:none;border-radius:5px;font-size:10px;font-weight:600;cursor:pointer}.btns button:hover{opacity:0.8}
+.btn-dns{background:#6366f1;color:#fff}.btn-smtp{background:#f0b90b;color:#000}.btn-final{background:#22c55e;color:#000}.btn-del{background:#ef4444;color:#fff;min-width:30px}
+@media(max-width:700px){.row{grid-template-columns:1fr}.term{height:160px}.logo{font-size:14px}}
 </style>
 </head>
 <body>
 <header>
-  <div class="logo">╔═══╗╔╗ ╔╗╔═══╗╔╗ ╔╗╔╗ ╔╗╔╗╔╗╔═══╗<br>║╔═╗║║║ ║║║╔══╝║║ ║║║║ ║║║║║║║╔══╝<br>║╚═╝║║╚═╝║║╚══╗║║ ║║║╚═╝║║║║║║╚══╗<br>║╔╗╔╝║╔═╗║║╔══╝║║ ║║║╔═╗║║╚╝║║╔══╝<br>║║║╚╗║║ ║║║╚══╗║╚═╝║║║ ║║╚╗╔╝║╚══╗<br>╚╝╚═╝╚╝ ╚╝╚═══╝╚═══╝╚╝ ╚╝ ╚╝ ╚═══╝</div>
-  <div class="subtitle">３ ＭＯＴＥＵＲＳ · ＤＮＳ · ＣＯＮＴＩＮＵ</div>
+  <div class="logo">QWANTUM</div>
+  <div class="subtitle">3 NIVEAUX · DNS · SMTP · FINAL</div>
 </header>
 <main><div class="row" id="dash"></div></main>
 <script>
@@ -43,13 +44,29 @@ var N={np:'📦 np',gt:'🐙 gt','y@':'▶️ y@'};
 var C={np:'np',gt:'gt','y@':'ya'};
 var dash=document.getElementById('dash');
 M.forEach(function(m){
-  dash.innerHTML+='<div class="col '+C[m]+'"><h3>'+N[m]+'</h3><div class="count">DNS: <b id="c_'+m+'">0</b></div><div class="term '+C[m]+'" id="t_'+m+'"></div><input type="number" id="n_'+m+'" value="50" min="1" max="9999"><div class="btns"><button class="btn-csv" onclick="dl(\''+m+'\')">📥 CSV</button><button class="btn-del" onclick="clr(\''+m+'\')">🗑️</button></div></div>';
+  dash.innerHTML+='<div class="col '+C[m]+'"><h3>'+N[m]+'</h3>'+
+    '<div class="counts">🔍 DNS: <b id="dns_'+m+'">0</b> | ⚡ SMTP: <b id="smtp_'+m+'">0</b> | ✅ FINAL: <b id="fin_'+m+'">0</b></div>'+
+    '<div class="term '+C[m]+'" id="t_'+m+'"></div>'+
+    '<input type="number" id="n_'+m+'" value="50" min="1" max="9999">'+
+    '<div class="btns">'+
+      '<button class="btn-dns" onclick="dl(\''+m+'\',\'dns\')">📥 DNS</button>'+
+      '<button class="btn-smtp" onclick="dl(\''+m+'\',\'smtp\')">📥 SMTP</button>'+
+      '<button class="btn-final" onclick="dl(\''+m+'\',\'final\')">📥 FINAL</button>'+
+      '<button class="btn-del" onclick="clr(\''+m+'\')">🗑️</button>'+
+    '</div></div>';
   new EventSource(A+'/live/'+m).onmessage=function(e){var t=document.getElementById('t_'+m);t.textContent+=e.data+'\n';t.scrollTop=t.scrollHeight;};
 });
-function ref(){M.forEach(function(m){fetch(A+'/stats/'+m).then(r=>r.json()).then(d=>{document.getElementById('c_'+m).textContent=d.dns||0});});}
+function ref(){M.forEach(function(m){fetch(A+'/stats/'+m).then(r=>r.json()).then(d=>{
+  document.getElementById('dns_'+m).textContent=d.dns||0;
+  document.getElementById('smtp_'+m).textContent=d.smtp||0;
+  document.getElementById('fin_'+m).textContent=d.final||0;
+});});}
 ref();setInterval(ref,10000);
-function dl(m){var n=parseInt(document.getElementById('n_'+m).value)||50;fetch(A+'/download/'+m+'?n='+n).then(r=>r.json()).then(d=>{if(d.emails.length){var c='email\n'+d.emails.join('\n');var b=new Blob([c],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='qw_'+m+'.csv';a.click();}else{alert('Aucun');}});}
-function clr(m){if(confirm('Vider '+m+'?')){fetch(A+'/clear/'+m).then(()=>ref());}}
+function dl(m,t){var n=parseInt(document.getElementById('n_'+m).value)||50;fetch(A+'/download/'+m+'/'+t+'?n='+n).then(r=>r.json()).then(d=>{if(d.emails.length){var c='email\n'+d.emails.join('\n');var b=new Blob([c],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='qw_'+m+'_'+t+'.csv';a.click();}else{alert('Aucun');}});}
+function clr(m){if(confirm('Vider tous les CSV de '+m+' ?')){
+  ['dns','smtp','final'].forEach(function(t){fetch(A+'/clear/'+m+'/'+t);});
+  setTimeout(ref,500);
+}}
 </script>
 </body>
 </html>
